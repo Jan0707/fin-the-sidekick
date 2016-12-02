@@ -1,5 +1,5 @@
 export interface IUser {
   blz: number;
-  pin: number;
+  pin: string;
   userId: string
 }

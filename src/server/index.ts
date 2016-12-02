@@ -6,14 +6,19 @@ import {Fints} from './fints';
 import {User} from './user';
 
 let myUser: IUser = {
-    blz: 1234,
-    pin: 12234,
-    userId: 'dfgiojd'
+    blz: 12345678,
+    pin: '1234',
+    userId: 'test1'
 }
 
 let user = new User(myUser)
 let fintsClient = new Fints(user, creditInstitutesConfig);
 
-fintsClient.connect()
-
-// console.log(fintsClient.getTurnOvers());
+fintsClient.connect(connected => {
+    if(connected) {
+        console.log('connected');
+        fintsClient.getTurnOvers(turnOvers => {
+            console.log(turnOvers);
+        })
+    }
+});

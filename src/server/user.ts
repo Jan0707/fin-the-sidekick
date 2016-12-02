@@ -4,7 +4,7 @@ import { IUser } from './interfaces/user';
 
 export class User implements IUser {
     blz: number;
-    pin: number;
+    pin: string;
     userId: string
 
     constructor(user: IUser) {

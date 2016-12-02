@@ -11,29 +11,30 @@ export class Fints {
     constructor(user: User, creditInstitutes) {
         this.user = user;
         this.connected = false;
-        this.finTSClient = new FinTSClient(user, creditInstitutes);
+        this.finTSClient = new FinTSClient(user.blz, user.userId, user.pin.toString(), creditInstitutes);
     }
 
-    connect() {
+    connect(callback) {
         this.finTSClient.EstablishConnection(function(error) {
             if(error) {
                 console.log("Fehler: "+ error);
+                callback(error);
             }
             else {
                 console.log("Erfolgreich Verbunden");
-
-                this.connected = true;
+                callback(true);
             }
         });
     }
 
-    getTurnOvers() {
-        this.finTSClient.MsgGetKontoUmsaetze(this.finTSClient.konten[0].sepa_data, null, null, function(error, rMsg, data) {
+    getTurnOvers(callback: Function) {
+        this.finTSClient.MsgGetKontoUmsaetze(this.finTSClient.konten[0].sepa_data, null, null, function(error, rMsg, data) {                      
             if(error){
                 console.log("Fehler beim laden der Umsätze: " + error);
+                callback(error);
             }
             else {
-                return JSON.stringify(data);                        
+                callback(JSON.stringify(data));                       
             }
         });
     }

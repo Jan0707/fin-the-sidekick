@@ -24,8 +24,15 @@ function createWindow () {
     slashes: true
   }))
 
+  // When UI has finish loading
+  // Courtesy of : http://www.codeblocq.com/2016/06/Build-your-First-Electron-App/
+  mainWindow.webContents.on('did-finish-load', () => {
+    // Send the timer value
+    mainWindow.webContents.send('new-total', 123.45);
+  });
+
   // Open the DevTools.
- //  mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

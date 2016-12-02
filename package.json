@@ -10,9 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "electron": "^1.4.10",
+    "nedb": "^1.8.0",
     "open-fin-ts-js-client": "^2.0.4"
   },
   "devDependencies": {
+    "@types/nedb": "0.0.31",
     "typescript": "2.0.*"
   }
 }

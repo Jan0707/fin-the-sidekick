@@ -26,7 +26,6 @@ var doc = { hello: 'world'
 
 db.insert(doc, function (err, newDoc) {
   console.log(err);
-  //console.log(newDoc);
 });
 
 
